@@ -67,9 +67,10 @@
   ([^ZkUtils zk-utils ^String topic partitions replication-factor]
    (create-topic! zk-utils topic partitions replication-factor nil))
   ([^ZkUtils zk-utils ^String topic partitions replication-factor topic-config]
-   (->> (or topic-config {})
-        (config-codec/encode)
-        (AdminUtils/createTopic zk-utils topic (int partitions) (int (or replication-factor 1))))))
+   (AdminUtils/createTopic zk-utils topic (int partitions)
+                           (int (or replication-factor 1))
+                           (config-codec/encode (or topic-config {}))
+                           (kafka.admin.RackAwareMode$Safe$.))))
 
 (defn delete-topic!
   "Marks a topic for deletion.
