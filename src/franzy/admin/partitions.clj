@@ -45,9 +45,9 @@
   > Note: This method may be changed/depricated given the state of this API in the official Kafka branch."
   ([^ZkUtils zk-utils ^String topic partitions]
     ;;TODO: verify if blank replica doesn't cause any issues
-   (redefine-partition-count! zk-utils topic partitions "" true))
-  ([^ZkUtils zk-utils topic partitions replica-assignment check-broker-available?]
-   (AdminUtils/addPartitions zk-utils topic (int partitions) replica-assignment check-broker-available?)))
+   (redefine-partition-count! zk-utils topic partitions ""))
+  ([^ZkUtils zk-utils topic partitions replica-assignment]
+   (AdminUtils/addPartitions zk-utils topic (int partitions) replica-assignment)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Replicas

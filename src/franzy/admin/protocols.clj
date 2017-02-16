@@ -24,7 +24,7 @@
 (defprotocol TopicPartitionWriter
   (redefine-partition-count!
     [this topic partitions]
-    [this topic partitions replica-assignment check-broker-available?]))
+    [this topic partitions replica-assignment]))
 
 (defprotocol TopicReplicaMetadataProvider
   (topic-replica-assignment
